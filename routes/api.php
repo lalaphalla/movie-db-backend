@@ -11,8 +11,11 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-
+// From API
 Route::get('/movies/popular', [MovieController::class, 'popular']);
+// Save to Databse and Redis
+// Use Cache
+Route::get('/movies/popular_v2', [MovieController::class, 'popularV2']);
 Route::get('/movies/trending', [MovieController::class, 'trending']);
 Route::get('/movies/{id}', [MovieController::class, 'detail']);
 

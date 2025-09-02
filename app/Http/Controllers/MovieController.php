@@ -29,6 +29,21 @@ class MovieController extends Controller
         'results' => MovieResource::collection($movies['results']),
     ]);
     }
+    public function popularV2()
+    {
+        $movies = $this->movieService->fetchPopularMoviesV2($page = 1, $limit = 2);
+        // return response()->json($this->movieService->fetchPopularMovies());
+        //      dd(print_r(value: $movies));
+   
+        return response()->json([
+        // 'page' => $movies['page'],
+        'page' => $page,
+        'limit' => $limit,
+        'total_pages' => $movies['total_pages'],
+        'total_results' => $movies['total_results'],
+        'results' => MovieResource::collection($movies['results']),
+    ]);
+    }
 
     public function trending()
     {
