@@ -22,8 +22,22 @@ class MovieInteractionController extends Controller
 
     public function userFavorites($userId)
     {
+        $user = Auth::user();
+
         $favorites = Favorite::where('user_id', $userId)->get();
 
+        // return $user->favorites;
+        return response()->json($favorites);
+    }
+
+    public function favorites()
+    {
+        $user = Auth::user();
+
+        if (!$user) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+        $favorites = Favorite::where('user_id', $user->id)->get();
         return response()->json($favorites);
     }
 

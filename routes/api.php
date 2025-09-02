@@ -34,4 +34,6 @@ Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logo
 Route::middleware('auth:sanctum')->post('/movies/{id}/favorites', [MovieInteractionController::class, 'addFavorite']);
 
 // User Like & Favorite
+Route::middleware('auth:sanctum')->get('/favorites', [MovieInteractionController::class, 'favorites']);
 Route::get('/users/{id}/favorites', [MovieInteractionController::class, 'userFavorites']);
+// Route::get('/favorites', [MovieInteractionController::class, 'favorites']);
